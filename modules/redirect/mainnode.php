@@ -1,16 +1,14 @@
 <?php
 
-    $Module =& $Params['Module'];
-    $ObjectID =& $Params['ObjectID'];
-    $userParams =& $Params['UserParameters'];
+    $Module = $Params['Module'];
+    $ObjectID = $Params['ObjectID'];
+    $userParams = $Params['UserParameters'];
 
-    include_once( 'kernel/classes/ezcontentobject.php' );
-
-    $object =& eZContentObject::fetch( $ObjectID );
+    $object = eZContentObject::fetch( $ObjectID );
 
     if ( $object )
     {
-        $mainNodeID =& $object->attribute( 'main_node_id' );
+        $mainNodeID = $object->attribute( 'main_node_id' );
 
         $userParamsString = '';
 
@@ -22,11 +20,11 @@
             }
         }
 
-        return $Module->redirectTo( '/content/view/full/' . $mainNodeID . '/' . $userParamsString );
+        return $Module->redirectTo( 'content/view/full/' . $mainNodeID . '/' . $userParamsString );
     }
     else
     {
-        return $Module->handleError( EZ_ERROR_KERNEL_NOT_AVAILABLE, 'kernel' );
+        return $Module->handleError( eZError::KERNEL_NOT_AVAILABLE, 'kernel' );
     }
 
 ?>
