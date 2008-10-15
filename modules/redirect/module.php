@@ -9,8 +9,13 @@ $ViewList['mainnode'] = array(
     'functions' => array( 'redirect' ),
     'params' => array( 'ObjectID' )
 );
+$ViewList['profile'] = array(
+    'script' => 'profile.php',
+    'functions' => array( 'redirect' ),
+    'params' => array()
+);
 
 // Define module functions (used by permission system).
-$FunctionList['redirect'] = array( );
+$FunctionList['redirect'] = array();
 
 ?>
