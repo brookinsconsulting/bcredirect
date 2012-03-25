@@ -1,6 +1,14 @@
-Redirect extension for eZ publish
+BC Redirect
+===========
 
-Copyright (C) 2005-2006 SCK-CEN
+A redirect extension for eZ Publish
+
+
+Copyright and License
+=====================
+
+Copyright (C) 2005-2006 SCK-CEN, 1999-2012 Brookins Consulting
+
 Written by Kristof Coomans ( http://blog.kristofcoomans.be )
 
 This program is free software; you can redistribute it and/or
@@ -18,13 +26,29 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 
- Features
-************
-The redirect module allows you to redirect to the main node of a contentobject by specifying only 
-it's content object ID.
+Features
+========
+
+The redirect module allows you to redirect to
+the main node of a contentobject by specifying
+only  it's content object ID.
 
 
- Usage
-************
+Usage
+=====
 
-See http://ez.no/community/forum/developer/node_number_at_first_publishing/
+From: http://share.ez.no/forums/developer/node-number-at-first-publishing#comment45422
+
+I needed to accomplish this too, but didn't succeed by using existing functionality.
+
+I made my own module which redirects to the main node of an object, by specifying the object id as a parameter in the URL. I've uploaded my extension to pubsvn, you can check it out from http://pubsvn.ez.no/community/trunk/extension/redirect.
+
+Installation and use:
+
+- enable the extension
+- give your users access to the redirect module (assign them a role with a policy for function redirect of module redirect)
+- you can use /redirect/mainnode/<i>yourobjectid</i> in the RedirectURIAfterPublish hidden input field.
+- custom view parameters are passed by in the URL, so you can use /redirect/mainnode/<i>yourobjectid</i>/(customkey)/customvalue.
+
+The extension was created in April 2005, and hasn't been tested on more recent releases of eZ publish. Feel free to try it, I hope it solves your problem.
+

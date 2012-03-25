@@ -1,30 +1,55 @@
 <?php
+/**
+ * File containing the bcredirect/profile module view.
+ *
+ * @copyright Copyright (C) 1999 - 2012 Brookins Consulting. All rights reserved.
+ * @license http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2 (or any later version)
+ * @version //autogentag//
+ * @package bcimagealias
+ */
 
-    $Module = $Params['Module'];
-    $ObjectID = $Params['ObjectID'];
-    $userParams = $Params['UserParameters'];
+/**
+ * Default module parameters
+ */
+$Module = $Params['Module'];
 
-    $object = eZContentObject::fetch( $ObjectID );
+/**
+ * Default Module View Parameters
+ */
+$ObjectID = $Params['ObjectID'];
 
-    if ( $object )
+$userParams = $Params['UserParameters'];
+
+/**
+ * Fetch object
+ */
+$object = eZContentObject::fetch( $ObjectID );
+
+if( $object )
+{
+    /**
+     * Fetch object main node and preapare url view parameters for redirect uri string
+     */
+    $mainNodeID = $object->attribute( 'main_node_id' );
+
+    $userParamsString = '';
+
+    if( count( $userParams ) > 0 )
     {
-        $mainNodeID = $object->attribute( 'main_node_id' );
-
-        $userParamsString = '';
-
-        if ( count( $userParams ) > 0 )
+        foreach( $userParams as $key => $value )
         {
-            foreach( $userParams as $key => $value )
-            {
-                $userParamsString = $userParamsString . '(' . $key . ')' . '/' . $value . '/';
-            }
+            $userParamsString = $userParamsString . '(' . $key . ')' . '/' . $value . '/';
         }
+    }
 
-        return $Module->redirectTo( 'content/view/full/' . $mainNodeID . '/' . $userParamsString );
-    }
-    else
-    {
-        return $Module->handleError( eZError::KERNEL_NOT_AVAILABLE, 'kernel' );
-    }
+    /**
+     * Redirect user to content view full module view with user parameters
+     */
+    return $Module->redirectTo( 'content/view/full/' . $mainNodeID . '/' . $userParamsString );
+}
+else
+{
+    return $Module->handleError( eZError::KERNEL_NOT_AVAILABLE, 'kernel' );
+}
 
 ?>

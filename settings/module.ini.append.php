@@ -1,9 +1,7 @@
-<?php
-/*
+<?php /* #?ini charset="utf-8"?
 
 [ModuleSettings]
-ExtensionRepositories[]=redirect
-ModuleList[]=redirect
+ExtensionRepositories[]=bcredirect
+ModuleList[]=bcredirect
 
-*/
-?>
+*/ ?>
